@@ -1,8 +1,12 @@
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <>
-      <h1>Test</h1>
+    <Navbar />
+    <section className="container mx-auto p-4">
+    coek
+    </section>
     </>
   );
 }

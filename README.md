@@ -1,6 +1,6 @@
 # To Do List app 
 
-Just for practioce Vite, TS, Tailwind, and Context
+Just for practice Vite, TS, Tailwind, and Context
 
 
 # React + TypeScript + Vite
