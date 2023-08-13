@@ -4,8 +4,8 @@ function App() {
   return (
     <>
     <Navbar />
-    <section className="container mx-auto p-4">
-    coek
+    <section className="container mx-auto p-4 text-center">
+    .
     </section>
     </>
   );
