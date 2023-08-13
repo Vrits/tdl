@@ -1,12 +1,18 @@
 import Navbar from "./components/Navbar";
+import TaskList from "./components/TaskList";
+import { TaskProvider } from "./components/Context/TaskContext";
+import { FC } from "react";
 
-function App() {
+const App:FC = () => {
   return (
     <>
-    <Navbar />
-    <section className="container mx-auto p-4 text-center">
-    .
-    </section>
+    <TaskProvider>
+
+      <Navbar />
+      <section className="container mx-auto p-4  rounded-lg my-4">
+      <TaskList />
+      </section>
+    </TaskProvider>
     </>
   );
 }

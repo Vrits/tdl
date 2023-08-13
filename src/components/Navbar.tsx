@@ -28,26 +28,26 @@ const Navbar = () => {
   }, []);
 
   const themeChange = () => {
-    // const isDark = localStorage.theme === 'dark'
-    // console.log(isDark)
     localStorage.theme = isDark ? "light" : "dark";
     setIsDark(!isDark);
   };
 
   return (
     <nav className="flex justify-between items-center px-4 py-3 bg-slate-800 text-white shadow-lg">
-      <div className="font-bold">To Do List app</div>
-      <div className="flex space-x-8">
+      <div className="font-bold w-28">To Do List app</div>
+      <div className="flex space-x-8 justify-center flex-1">
         <a href="#">Source</a>
         <a href="#">About</a>
       </div>
-      <div
-        className="cursor-pointer"
-        onClick={() => {
-          themeChange();
-        }}
-      >
-        {isDark ? <MoonIcon /> : <SunIcon />}
+      <div className="w-28 flex justify-end items-end">
+        <div
+          className="cursor-pointer"
+          onClick={() => {
+            themeChange();
+          }}
+        >
+          {isDark ? <MoonIcon /> : <SunIcon />}
+        </div>
       </div>
     </nav>
   );
