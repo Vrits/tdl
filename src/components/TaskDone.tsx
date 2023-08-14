@@ -1,25 +1,24 @@
 import useTaskContext from "./Context/useTaskContext";
-import CheckIcon from "./Icons/CheckIcon";
+import ReturnIcon from "./Icons/ReturnIcon";
 import TrashIcon from "./Icons/TrashIcon";
 
-const TaskList = () => {
+const TaskDone = () => {
   const { taskList: task, deleteTask, toggleTaskCompletion } = useTaskContext();
-  const filteredTask = task.filter((e) => !e.completed);
+  const filteredTask = task.filter((e) => e.completed);
 
   const noTaskText =
-    task.length < 1 ? (
-      <p>There no task to do right now, Add some task?</p>
-    ) : (
-      <p>You have done all the tasks, Have a good rest!</p>
-    );
+    task.length < 1 ? null : <p>You have {task.length} Task to do.</p>;
+
   return (
     <>
-      <h2 className="font-bold mb-4">Task to do :</h2>
+      {task.length >= 1 ? (
+        <h2 className="font-bold mb-4 mt-4">Completed Task :</h2>
+      ) : null}
       <div className="flex justify-evenly items-center flex-wrap">
         {filteredTask.map((e) => (
           <div
             key={e.id}
-            className="flex flex-col mt-4 bg-slate-300 dark:bg-slate-700  p-4 rounded-lg shadow-lg border border-transparent dark:border-slate-500 hover:border-slate-400 dark:hover:border-slate-400 transition-colors"
+            className="flex flex-col mt-4 bg-slate-300 dark:bg-slate-700 p-4 rounded-lg shadow-lg border border-emerald-600 dark:border-emerald-500 hover:border-emerald-400 dark:hover:border-emerald-400 transition-colors"
           >
             <h4 className="font-bold">{e.title}</h4>
             <p className="text-sm mb-3">{e.description}</p>
@@ -29,10 +28,10 @@ const TaskList = () => {
                 onClick={() => {
                   toggleTaskCompletion(e.id);
                 }}
-                className="font-bold shadow-lg px-4 py-2 bg-emerald-400 dark:bg-emerald-500 hover:bg-emerald-300 dark:hover:bg-emerald-400 
+                className="font-bold shadow-lg px-4 py-2 bg-yellow-400 dark:bg-yellow-600 hover:bg-yellow-300 dark:hover:bg-yellow-500 
                 transition-colors rounded-lg "
               >
-                <CheckIcon />
+                <ReturnIcon />
               </button>
               <button
                 onClick={() => {
@@ -52,4 +51,4 @@ const TaskList = () => {
   );
 };
 
-export default TaskList;
+export default TaskDone;
