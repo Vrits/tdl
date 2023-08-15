@@ -1,8 +1,6 @@
 import { createContext, useState, PropsWithChildren } from "react";
 
-// Define the type for the context
-
-type TaskType = {
+export type TaskType = {
   title: string;
   description: string;
   date: string;
@@ -12,40 +10,22 @@ type TaskType = {
 
 export type TaskContextType = {
   taskList: TaskType[];
+  addTask: (newTask: TaskType) => void;
   toggleTaskCompletion: (id: string) => void;
   deleteTask: (id: string) => void;
 };
 
-// Create the context
 export const TaskContext = createContext<TaskContextType | undefined>(
   undefined
 );
 
-// Create the ThemeProvider component
 const TaskProvider = ({ children }: PropsWithChildren) => {
-  const [task, setTask] = useState<TaskType[]>([
-    {
-      title: "eat",
-      description: "desctest",
-      date: "2020",
-      completed: false,
-      id: "b6a9ab22-e4e5-4da7-8945-5b52adf515b3",
-    },
-    {
-      title: "drink",
-      description: "desctest",
-      date: "2020",
-      completed: false,
-      id: "3df14ce2-7e27-4d7c-abd2-35ba5c013a85",
-    },
-    {
-      title: "test2",
-      description: "desctest",
-      date: "2020",
-      completed: true,
-      id: "6aea0722-aeeb-482a-a093-b045c91f6d42",
-    },
-  ]);
+  const [task, setTask] = useState<TaskType[]>([]);
+
+  const addTask = (newTask: TaskType) => {
+    const updatedTask = [...task, newTask];
+    setTask([...updatedTask]);
+  };
 
   const toggleTaskCompletion = (id: string) => {
     const findTask = task.find((e) => e.id === id);
@@ -56,17 +36,16 @@ const TaskProvider = ({ children }: PropsWithChildren) => {
     );
 
     setTask([...updatedTask]);
-    console.log(task);
   };
 
   const deleteTask = (id: string) => {
     const filteredTask = task.filter((e) => e.id !== id);
-    console.log(filteredTask);
     setTask([...filteredTask]);
   };
 
   const contextValue: TaskContextType = {
     taskList: task,
+    addTask,
     toggleTaskCompletion,
     deleteTask,
   };

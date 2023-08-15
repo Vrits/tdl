@@ -14,7 +14,7 @@ const TaskDone = () => {
       {task.length >= 1 ? (
         <h2 className="font-bold mb-4 mt-4">Completed Task :</h2>
       ) : null}
-      <div className="flex justify-evenly items-center flex-wrap">
+      <div className="flex justify-evenly items-center flex-wrap w-full">
         {filteredTask.map((e) => (
           <div
             key={e.id}

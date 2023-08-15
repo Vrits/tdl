@@ -15,7 +15,7 @@ const TaskList = () => {
   return (
     <>
       <h2 className="font-bold mb-4">Task to do :</h2>
-      <div className="flex justify-evenly items-center flex-wrap">
+      <div className="flex justify-evenly items-center flex-wrap w-full">
         {filteredTask.map((e) => (
           <div
             key={e.id}
