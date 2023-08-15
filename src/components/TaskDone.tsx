@@ -18,7 +18,7 @@ const TaskDone = () => {
         {filteredTask.map((e) => (
           <div
             key={e.id}
-            className="flex flex-col mt-4 bg-slate-300 dark:bg-slate-700 p-4 rounded-lg shadow-lg border border-emerald-600 dark:border-emerald-500 hover:border-emerald-400 dark:hover:border-emerald-400 transition-colors"
+            className="flex flex-col mt-4 bg-slate-300 dark:bg-slate-700 p-4 rounded-lg shadow-lg border border-emerald-600 dark:border-emerald-500 hover:border-emerald-400 dark:hover:border-emerald-400 transition-colors w-full sm:w-fit"
           >
             <h4 className="font-bold">{e.title}</h4>
             <p className="text-sm mb-3">{e.description}</p>
