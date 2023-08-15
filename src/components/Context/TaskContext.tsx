@@ -1,4 +1,4 @@
-import { createContext, useState, PropsWithChildren } from "react";
+import { createContext, useState, PropsWithChildren, useEffect } from "react";
 
 export type TaskType = {
   title: string;
@@ -19,12 +19,24 @@ export const TaskContext = createContext<TaskContextType | undefined>(
   undefined
 );
 
+const TASK_KEY = "TO_DO_LIST";
+
 const TaskProvider = ({ children }: PropsWithChildren) => {
   const [task, setTask] = useState<TaskType[]>([]);
+
+  useEffect(() => {
+    const storedData = localStorage.getItem(TASK_KEY);
+
+    if (storedData) {
+      const retrievedArray = JSON.parse(storedData);
+      setTask(retrievedArray);
+    }
+  }, []);
 
   const addTask = (newTask: TaskType) => {
     const updatedTask = [...task, newTask];
     setTask([...updatedTask]);
+    localStorage.setItem(TASK_KEY, JSON.stringify(updatedTask));
   };
 
   const toggleTaskCompletion = (id: string) => {
@@ -36,11 +48,14 @@ const TaskProvider = ({ children }: PropsWithChildren) => {
     );
 
     setTask([...updatedTask]);
+    localStorage.setItem(TASK_KEY, JSON.stringify(updatedTask));
   };
 
   const deleteTask = (id: string) => {
     const filteredTask = task.filter((e) => e.id !== id);
     setTask([...filteredTask]);
+
+    localStorage.setItem(TASK_KEY, JSON.stringify(filteredTask));
   };
 
   const contextValue: TaskContextType = {
