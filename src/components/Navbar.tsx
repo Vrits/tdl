@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import MoonIcon from "./Icons/MoonIcon";
 import SunIcon from "./Icons/SunIcon";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const [isDark, setIsDark] = useState(false);
@@ -34,10 +35,24 @@ const Navbar = () => {
 
   return (
     <nav className="flex justify-between items-center px-4 py-3 bg-slate-800 text-white shadow-lg">
-      <div className="font-bold w-28">To Do List app</div>
+      <NavLink to='/' className="font-bold w-28">To Do List app</NavLink>
       <div className="flex space-x-8 justify-center flex-1">
-        <a href="#">Source</a>
-        <a href="#">About</a>
+        <NavLink
+          className={({ isActive }) => (isActive ? "underline" : "")}
+          to="/"
+        >
+          Home
+        </NavLink>
+        <a href="https://github.com/Vrits/tdl" target="_blank">
+          Source
+        </a>
+
+        <NavLink
+          className={({ isActive }) => (isActive ? "underline" : "")}
+          to="/about"
+        >
+          About
+        </NavLink>
       </div>
       <div className="w-28 flex justify-end items-end">
         <div

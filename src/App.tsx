@@ -1,9 +1,9 @@
 import Navbar from "./components/Navbar";
-import TaskList from "./components/TaskList";
-import TaskDone from "./components/TaskDone";
 import { TaskProvider } from "./components/Context/TaskContext";
 import { FC } from "react";
-import TaskForm from "./components/TaskForm";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import { Route, Routes } from "react-router-dom";
 
 const App: FC = () => {
   return (
@@ -11,9 +11,12 @@ const App: FC = () => {
       <TaskProvider>
         <Navbar />
         <section className=" flex flex-col justify-center items-center container mx-auto p-4 rounded-lg my-4 ">
-          <TaskForm />
-          <TaskList />
-          <TaskDone />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            {/* <Home />
+          <About /> */}
+          </Routes>
         </section>
       </TaskProvider>
     </>
